@@ -1,0 +1,116 @@
+/* Estilos para el cuerpo */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Color dominante (60%) */
+.main-container {
+    background-color: #1E3A5F;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Contenedor de los botones en formato cuadrado */
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    grid-gap: 20px; /* Espacio entre los botones */
+    width: 400px; /* Ancho total del contenedor */
+    margin-top: 20px;
+}
+
+/* Botones con color de acento (10%) */
+.button {
+    background-color: #388E3C;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 180px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover {
+    background-color: #2C6B2F;
+}
+
+/* Color secundario (30%) */
+.navbar {
+    background-color: #E0E0E0;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espacio entre logo y enlaces */
+    padding: 0 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el logo */
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1E3A5F;
+}
+
+/* Contenedor de los enlaces alineados a la derecha */
+.navbar .nav-links {
+    display: flex;
+    gap: 30px; /* Espacio entre enlaces */
+    margin-right: 40px; /* Espacio adicional a la derecha */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #1E3A5F;
+    font-weight: bold;
+}
+
+/* Botones con color de acento (10%) */
+.button {
+    background-color: #388E3C;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2C6B2F;
+}
+
+/* Clase para los títulos */
+.titulo {
+    font-family: Poppins; /* Fuente para los títulos */
+    font-size: 2.5em; /* Tamaño de letra grande */
+    margin-bottom: 0.5em;
+  }
+  
+  /* Clase para los párrafos */
+  .parrafo {
+    font-family: Montserrat; /* Fuente para los párrafos */
+    font-size: 1.2em; /* Tamaño de letra para los párrafos */
+    margin-bottom: 2em;
+  }
+
+  .logo-img {
+    width: 500px; /* Ajusta el ancho a 150 píxeles */
+    height: auto; /* Mantiene la relación de aspecto */
+}
