@@ -1,0 +1,932 @@
+/* Importar las fuentes Montserrat y Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Estilo para los títulos */
+h1, h2 {
+    font-family: 'Montserrat', sans-serif; /* Tipografía para títulos */
+    font-weight: bold; /* Asegúrate de mantenerlos destacados */
+}
+
+/* Contenedor del menú y logo */
+#menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background-color: trasparent; /* Menú transparente */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Contenedor para centrar el menú */
+.menu-wrapper {
+    display: flex;
+}
+
+
+/* Menú centrado */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* Cambia a flex-end para mover a la derecha */
+    gap: 10; /* Ajusta el margen derecho para separarlo del borde */
+    flex-grow: 1; /* Permite que el menú ocupe el espacio restante */
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #388E3C; /* Color 10 */
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 15px;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.menu li a:hover {
+    color: #2C6B2F; /* Color 10 hover */
+    border-bottom: 2px solid #2C6B2F; /* Opción para un efecto hover con subrayado */
+}
+/* Dropdown principal */
+.dropdown {
+    position: relative; /* Asegura que el dropdown-content se posicione relativo a este contenedor */
+}
+
+/* Contenedor del dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Justo debajo del elemento padre */
+    left: 0; /* Alineado al lado izquierdo del padre */
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    padding: 10px;
+    margin-top: 1px;
+    min-width: 200px;
+    border-radius: 4px; /* Opcional, redondea los bordes */
+}
+
+/* Opciones dentro del dropdown */
+.dropdown-content li {
+    padding: 5px 10px;
+    list-style: none;
+}
+
+.dropdown-content li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #388E3C;
+}
+
+/* Mostrar el dropdown al hacer hover */
+.dropdown:hover .dropdown-content {
+    display: block; /* Mostrar el menú desplegable */
+}
+
+/* Flecha de plegar/desplegar */
+#toggle-menu {
+    position: fixed;
+    right: 10px;
+    top: 40px;
+    cursor: pointer;
+    z-index: 1000;
+    transform: translateY(-50%) rotate(90deg);
+    transition: transform 0.3s ease;
+}
+
+#toggle-menu svg {
+    width: 20px;
+    height: 20px;
+    fill: #388E3C;
+}
+
+/* Cuando el menú esté colapsado, rotar la flecha hacia la izquierda */
+#menu-container.collapsed + #toggle-menu {
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+.header-container {
+    position: relative; /* Para superposición */
+    width: 100%;
+    height: 67vh; /* Ocupa toda la pantalla */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
+}
+
+.header-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Se asegura de cubrir todo el contenedor */
+    object-fit: cover; /* La imagen se ajusta sin deformarse */
+    z-index: -1; /* Envía la imagen al fondo */
+}
+
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #1E3A5F; /* Cambia al color deseado */
+}
+
+.centered-text h1 {
+    font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #388E3C; /* Cambia al color 10% */
+}
+
+.centered-text p {
+    font-size: 1.2rem;
+    color: #388E3C; /* Cambia al color 10 hover */
+}
+
+.responsive-logo {
+    display: block; /* Asegura que el logo sea un bloque separado */
+    margin: 0 auto; /* Centra el logo horizontalmente */
+    width: 120px; /* Ajusta dinámicamente entre 80px y 150px */
+    height: auto; /* Mantiene la proporción del logo */
+    transition: all 0.3s ease; /* Suaviza los cambios */
+    margin-top: 20px;
+}
+
+
+/* Media query para ajustar la posición vertical */
+@media (max-height: 600px) {
+    .centered-text {
+        top: 50%; /* Baja el texto un poco para evitar colisiones */
+    }
+    .responsive-logo {
+        width: 90px; /* Ajusta dinámicamente entre 80px y 150px */
+    }
+}
+
+@media (max-height: 500px) {
+    .centered-text {
+        top: 60%; /* Baja más el texto si la pantalla es muy pequeña */
+    }
+    .responsive-logo {
+        width: 40px; /* Ajusta dinámicamente entre 80px y 150px */
+    }
+    
+}
+
+@media (max-width: 1300px) and (min-width: 1101px) {
+    .centered-text h1 {
+        font-size: 3.8rem;
+    }
+
+    .centered-text p {
+        font-size: 1.1rem;
+    }
+
+    .logo img {
+        height: 70px;
+    }
+
+    .menu li a {
+        font-size: 18px;
+    }
+}
+
+/* Desde 1100px hasta 900px */
+@media (max-width: 1100px) and (min-width: 901px) {
+    .centered-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .centered-text p {
+        font-size: 1rem;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+    .menu li a {
+        font-size: 17px;
+    }
+}
+
+/* Desde 900px hasta 763px */
+@media (max-width: 900px) and (min-width: 764px) {
+    .centered-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .centered-text p {
+        font-size: 0.95rem;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .menu li a {
+        font-size: 16px;
+    }
+}
+
+/* Desde 763px hacia abajo */
+@media (max-width: 763px) {
+    .centered-text h1 {
+        font-size: 2rem;
+    }
+
+    .centered-text p {
+        font-size: 0.9rem;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .menu li a {
+        font-size: 15px;
+    }
+}
+
+
+/* Animación de ocultar el menú */
+#menu-container.collapsed {
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+}
+
+#menu-container {
+    transition: transform 0.5s ease;
+}
+
+/* Ajuste del gradiente */
+.video-container {
+    position: relative;
+}
+
+.video-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 250px; /* Ajusta la altura para controlar hasta dónde llega el gradiente */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%
+                                , rgba(0, 0, 0, 0.2) 10%
+                                , rgba(0, 0, 0, 0.3) 20%
+                                , rgba(0, 0, 0, 0.4) 30%
+                                , rgba(0, 0, 0, 0.5) 50%
+                                , rgba(0, 0, 0, 0.7) 80%
+                                , rgba(0, 0, 0, 1) 100%);
+    pointer-events: none;
+    z-index: 5; /* Asegura que quede encima del video */
+}
+
+/* Eliminar la línea blanca */
+.image-gallery {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none; /* Asegurarse de que no haya ningún borde */
+}
+
+/* Animaciones de entrada y salida */
+.animate-in-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.animate-in-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Clase de fondo opaco cuando el menú se despliega después del scroll */
+.menu-background {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 0.3s ease;
+}
+
+/* Contenedor para las imágenes */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre las columnas de imágenes */
+    align-items: flex-start; /* Alinea las imágenes por la parte superior */
+    flex-wrap: wrap;
+}
+
+/* Estilo para todas las imágenes */
+.image-gallery img {
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Estilos para las imágenes grandes */
+.image-gallery img.large {
+    width: 200px;
+    height: 400px;
+    margin-bottom: 50px; /* Da un margen para las imágenes grandes */
+}
+
+/* Estilos para las imágenes pequeñas */
+.image-gallery img.small {
+    width: 200px;
+    height: 250px;
+    align-self: center; /* Centra verticalmente las imágenes pequeñas */
+}
+
+/* Estilos para la sección de valores con fondo azul */
+.values-section {
+    background-color: #f5f5f5; /* Azul similar al del video */
+    padding: 50px 0;
+    text-align: center;
+    color: white; /* Cambia el texto a blanco para mejor contraste */
+}
+
+.values-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente las cajas */
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre las cajas */
+}
+
+.value-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    min-width: 200px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: none;
+    text-align: center;
+    min-height: 350px; /* Ajusta según sea necesario para igualar la altura de las tarjetas */
+}
+
+.value-item:hover {
+    transform: translateY(-5px); /* Se levanta un poco al hacer hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* La sombra aparece solo al hacer hover */
+}
+
+.value-icon {
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.value-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin: 15px 0;
+    min-height: 60px; /* Ajuste de altura uniforme para los títulos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value-item p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #555;
+    margin: 0;
+    min-height: 80px; /* Ajuste de altura uniforme para los párrafos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Estilos del footer */
+.footer {
+    background-color: #1E3A5F;
+    color: #388E3C;
+    padding: 20px 0; /* Espaciado superior e inferior */
+    text-align: center; /* Centra todos los elementos dentro del footer */
+}
+
+/* Footer Middle */
+.footer-middle {
+    margin: 20px 0; /* Espaciado entre los elementos */
+}
+
+.footer-middle .footer-logo img {
+    height: 150px; /* Tamaño del logo */
+    margin-bottom: 30px; /* Espaciado entre el logo y el slogan */
+}
+
+/* General styles */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Asegura que las columnas tengan la misma altura */
+    padding: 50px;
+}
+
+/* Section: Quiénes Somos */
+.quienes-somos {
+    background: #d1d4d6;
+    padding: 50px 0;
+}
+
+.quienes-somos .texto {
+    flex: 1;
+    padding-right: 30px;
+}
+
+.quienes-somos .imagen {
+    flex: 1;
+    text-align: center; /* Centra la imagen horizontalmente */
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+}
+
+.quienes-somos .imagen img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.quienes-somos-text h2 {
+    font-size: 24px !important; /* Reducir el tamaño del título */
+    margin-top: 30px !important; /* Aumentar espacio encima del título */
+    margin-bottom: 30px !important; /* Aumentar espacio debajo del título */
+}
+
+.quienes-somos-text h3 {
+    font-size: 20px !important; /* Reducir el tamaño del subtítulo */
+    margin-top: 20px !important; /* Aumentar espacio encima del subtítulo */
+    margin-bottom: 20px !important; /* Aumentar espacio debajo del subtítulo */
+}
+
+.quienes-somos-text p {
+    font-size: 17px !important; /* Reducir el tamaño del texto */
+    margin-top: 10px !important; /* Espaciado extra entre párrafos */
+    margin-bottom: 20px !important; /* Aumentar espacio entre párrafos */
+    line-height: 1.8 !important; /* Aumentar espaciado entre líneas */
+    text-align: justify !important; /* Justificar el texto */
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column; /* Cambia la dirección a columna */
+        align-items: center; /* Centra los elementos */
+        padding: 20px; /* Reduce el padding */
+    }
+
+    .quienes-somos .texto {
+        width: 100%; /* El texto ocupa todo el ancho */
+        padding-right: 0; /* Elimina el padding derecho */
+    }
+
+    .quienes-somos .imagen {
+        margin-top: 20px; /* Añade un margen para separar la imagen del texto */
+    }
+
+    .quienes-somos .imagen img {
+        max-width: 90%; /* Ajusta el tamaño de la imagen */
+    }
+}
+
+/* Section: Qué Hacemos */
+.que-hacemos {
+    background: #f5f5f5;
+    padding: 50px 0;
+}
+
+.que-hacemos .texto {
+    flex: 1;
+    padding-left: 30px;
+}
+
+.que-hacemos .imagen {
+    flex: 1;
+    text-align: center; /* Centra la imagen horizontalmente */
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+}
+
+.que-hacemos .imagen img {
+    max-width: 45%;
+    border-radius: 10px;
+}
+
+/* Ajustar el contenedor de la imagen */
+.image-container-small {
+    width: 75%; /* Ajusta el ancho de las imágenes */
+    height: auto;
+    border-radius: 10px; /* Mantiene los bordes redondeados */
+}
+
+/* Sección de estadísticas */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px; /* Espacio entre las columnas */
+    margin-top: 50px; /* Añadir margen superior para separarlo del contenido anterior */
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.stat-item h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.stat-item p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #555;
+}
+
+#contact-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column; /* Botones en columna */
+    gap: 10px; /* Espacio entre botones */
+    z-index: 1000;
+}
+
+#contact-buttons div {
+    width: 50px;
+    height: 50px;
+}
+
+#contact-buttons img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Hace los botones circulares */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contact-buttons img:hover {
+    transform: scale(1.1); /* Agranda un poco el botón al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.container-carousel {
+    position: relative;
+    width: 1200px;
+    height: 600px;
+    background-color: #e0e0e0;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.66);
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 auto; /* Centra horizontalmente */
+    justify-content: center;
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Media queries */
+@media (max-width: 1300px) {
+    .container-carousel {
+        width: 1100px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .container-carousel {
+        width: 1000px;
+    }
+}
+
+@media (max-width: 900px) {
+    .container-carousel {
+        width: 800px;
+    }
+}
+
+@media (max-width: 700px) {
+    .container-carousel {
+        width: 600px;
+    }
+}
+
+.carruseles {
+    width: 1000%;
+    height: 100%;
+    display: flex;
+
+}
+
+.slider-section {
+    width: calc(100% / 10);
+    height: 100%;
+}
+
+.slider-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.btn-left,
+.btn-right {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    font-size: 1.5rem;
+    background-color: black;
+    border-radius: 50%;
+    padding: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ffffff81;
+    transform: translate(0,-50%);
+    transition: .5s ease;
+    user-select: none;
+}
+
+.btn-left:hover,
+.btn-right:hover {
+    background-color: #333333d4;
+    color: #fff;
+}
+
+.btn-left {
+    left: 10px;
+}
+
+.btn-right {
+    right: 10px;
+}
+
+.imagen {
+    display: flex; /* Utilizamos flexbox */
+    flex-direction: column; /* Hace que los elementos hijos (imágenes) se apilen verticalmente */
+    align-items: center; /* Centra las imágenes horizontalmente */
+}
+
+.imagen img {
+    width: 60%; /* Aumenta el tamaño al 60% del contenedor */
+    height: auto; /* Mantiene la proporción de las imágenes */
+    object-fit: cover; /* Asegura que la imagen se ajuste al contenedor */
+    margin-left: 100px; /* Empuja la imagen hacia la derecha */
+    display: block; /* Asegura que la imagen sea un bloque para aplicar margen */
+}
+
+
+.visible-title {
+    display: flex;
+    flex-direction: column; /* Ordena los elementos en columna */
+    align-items: center; /* Opcional: centra horizontalmente */
+    padding-top: 30px;
+    padding-bottom: -20px;
+}
+
+@media (max-width: 1300px) {
+    .imagen img {
+        width: 70%; /* Reduce un poco el tamaño en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 900px) {
+    .imagen img {
+        width: 80%; /* Se adapta para pantallas aún más pequeñas */
+    }
+}
+
+@media (max-width: 600px) {
+    .imagen img {
+        width: 100%; /* Ocupa todo el ancho disponible */
+    }
+}
+
+/* Estilos del modal */
+.modal {
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo semitransparente */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de cierre del modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Botones y entradas */
+.btn {
+    background-color: #388E3C; /* Color primario */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2C6B2F; /* Color hover */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Contenedor del switch */
+.language-switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Estilo del switch */
+.switchLenguaje {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switchLenguaje input {
+    display: none;
+}
+
+.sliderLenguaje {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.sliderLenguaje:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* Color al activar */
+input:checked + .sliderLenguaje {
+    background-color: #388E3C; /* Color 10 */
+}
+
+input:checked + .sliderLenguaje:before {
+    transform: translateX(26px);
+}
+
+/* Separacion de codigos */
+
+/* Contenedor del switch de lenguaje */
+.language-switch-menu {
+    margin-left: auto; /* Empuja el switch a la derecha */
+    display: flex;
+    align-items: center; /* Centra el contenido verticalmente */
+    gap: 5px; /* Espacio entre el switch y las etiquetas */
+}
+
+/* Estilo para las etiquetas del idioma */
+.lang-label {
+    font-family: 'Montserrat', sans-serif; /* Usa la fuente del menú */
+    font-size: 16px; /* Tamaño similar al menú */
+    font-weight: bold;
+    color: #388E3C; /* Color de los textos */
+}
+
+/* Opciones para alinear las etiquetas según el lado */
+.lang-left {
+    margin-right: 5px; /* Espacio a la derecha de la etiqueta izquierda */
+}
+
+.lang-right {
+    margin-left: 5px; /* Espacio a la izquierda de la etiqueta derecha */
+}
+
+/* Switch de lenguaje */
+.switchLenguaje {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.switchLenguaje input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sliderLenguaje {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.sliderLenguaje:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3.5px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .sliderLenguaje {
+    background-color: #388E3C;
+}
+
+input:checked + .sliderLenguaje:before {
+    transform: translateX(24px);
+}
